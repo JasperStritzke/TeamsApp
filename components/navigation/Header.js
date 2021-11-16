@@ -3,14 +3,14 @@ import {StyleSheet, Text, View} from "react-native";
 import TransparentButton from "../form/TransparentButton";
 import {Shuffle, Download} from "react-native-feather";
 
-export default function Header({membersCount, shuffle, saveTeam, groupName}) {
+export default function Header({membersCount, randomMember, saveTeam, groupName}) {
     return (
         <View style={styles.header}>
             <Text style={styles.members}>Mitglieder ({membersCount})</Text>
             <Text style={{fontSize: 15, fontWeight: '600'}}>{groupName}</Text>
             <View style={{display: "flex", flexDirection: "row"}}>
                 <View style={{marginRight: 15}}>
-                    <TransparentButton icon={Shuffle} small onPress={shuffle}/>
+                    <TransparentButton icon={Shuffle} small onPress={randomMember}/>
                 </View>
                 <TransparentButton icon={Download} onPress={saveTeam} small/>
             </View>

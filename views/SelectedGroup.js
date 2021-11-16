@@ -8,7 +8,7 @@ import MemberCreateForm from "../components/form/MemberCreateForm";
 import UniversalButton from "../components/form/UniversalButton";
 import {Member} from "../store/types";
 import {Trash2} from "react-native-feather";
-import {randomGenerator} from "../util/random";
+import {randomGenerator, randomNumberInRange} from "../util/random";
 
 const styles = StyleSheet.create({
     tableColumnTitle: {
@@ -75,7 +75,15 @@ export default class extends React.Component {
     }
 
     randomMember() {
+        const activeMembers = this.getActivatedMembers();
 
+        if (activeMembers.length === 0) {
+            Alert.alert("Keine Mitglieder.", "Bitte füge Mitglieder zur Gruppe hinzu, um ein züfalliges Mitglied auszuwälen.")
+            return
+        }
+
+        const randomMember = activeMembers[randomNumberInRange(0, activeMembers.length - 1)]
+        Alert.alert(randomMember.name, "Zufälliges Mitglied")
     }
 
     componentDidUpdate() {
@@ -168,7 +176,7 @@ export default class extends React.Component {
             <>
                 <Header
                     saveTeam={this.saveTeam}
-                    shuffle={this.randomMember}
+                    randomMember={this.randomMember}
                     membersCount={this.state.members.length}
                     groupName={this.state.groupName}
                 />
