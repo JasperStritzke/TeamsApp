@@ -5,7 +5,13 @@
     "version": "1.0.0",
     "assetBundlePatterns": [
       "**/*"
-    ]
+    ],
+    "ios": {
+      "bundleIdentifier": "info.stritzke.TeamsApp"
+    },
+    "android": {
+      "package": "info.stritzke.TeamsApp"
+    }
   },
   "name": "teamsapp"
 }

@@ -1,21 +1,25 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import {NavigationContainer} from '@react-navigation/native'
+import {createDrawerNavigator} from "@react-navigation/drawer";
+import {borderColor, white} from "./styles/mainTheme";
+import CustomDrawer from "./components/navigation/customDrawer";
+import NoneSelected from "./views/NoneSelected";
+import SelectedGroup from "./views/SelectedGroup";
+import TeamsCreation from "./views/TeamsCreation";
+
+const Drawer = createDrawerNavigator();
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+    return (
+        <NavigationContainer theme={{colors: {background: white}}}>
+            <Drawer.Navigator
+                screenOptions={{drawerType: "permanent", drawerStyle: {borderColor: borderColor}, header: () => undefined}}
+                drawerContent={props => <CustomDrawer {...props}/>}
+            >
+                <Drawer.Screen name="NoneSelected" component={NoneSelected}/>
+                <Drawer.Screen name="SelectedGroup" component={SelectedGroup}/>
+                <Drawer.Screen name="TeamsCreation" component={TeamsCreation}/>
+            </Drawer.Navigator>
+        </NavigationContainer>
+    );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
